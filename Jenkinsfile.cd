@@ -15,8 +15,8 @@ pipeline {
     stage('Checkout Code') {
       steps {
         checkout([
-        $class: 'GitSCM',
-        branches: [
+          $class: 'GitSCM',
+          branches: [
             [
                 name: 'VACMS-1019_ignore_readme'
             ]
@@ -24,9 +24,8 @@ pipeline {
             doGenerateSubmoduleConfigurations: false,
             extensions: [
                 [
-                    $class: 'PathRestriction',
-                    excludedRegions: "README/.*",
-                    includedRegions: ""
+                    $class: 'MessageExclusion',
+                    excludedMessage: ".*\[do-not-build\].*"
                 ]
             ],
         ])
